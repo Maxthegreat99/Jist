@@ -11,6 +11,7 @@ using Jint.Native;
 using Jint.Native.Object;
 using TShockAPI;
 using System.Dynamic;
+using Microsoft.Xna.Framework;
 
 namespace Wolfje.Plugins.Jist.stdlib
 {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TShockAPI;
+using Microsoft.Xna.Framework;
 
 namespace Wolfje.Plugins.Jist.Extensions {
 	public static class TSPlayerExtensions {
