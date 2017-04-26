@@ -9,7 +9,7 @@ using Wolfje.Plugins.Jist.Framework;
 
 namespace Wolfje.Plugins.Jist
 {
-    [ApiVersion(2, 0)]
+    [ApiVersion(2, 1)]
     public class JistPlugin : TerrariaPlugin
     {
         public static JistEngine Instance { get; protected set; }

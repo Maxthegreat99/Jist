@@ -474,8 +474,8 @@ namespace Wolfje.Plugins.Jist.stdlib
                 return new KeyValuePair<int, Terraria.NPC>(-1, null);
             }
 
-            //Terraria.Main.npc[index].SetDefaults(npc.type, -1f);
-            Terraria.Main.npc[index].SetDefaults(npc.name);
+            Terraria.Main.npc[index].SetDefaults(npc.type, -1f);
+            //Terraria.Main.npc[index].SetDefaults(npc.name);
             //Terraria.Main.npcLifeBytes[index] = 4;
 
             return new KeyValuePair<int, Terraria.NPC>(index, npc);
