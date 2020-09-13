@@ -163,7 +163,7 @@ namespace Wolfje.Plugins.Jist.stdlib
                     return player;
                 }
 
-                return TShockAPI.TShock.Players.FirstOrDefault(i => i != null && i.User.Name == PlayerRef.ToString());
+                return TShockAPI.TShock.Players.FirstOrDefault(i => i != null && i.Account.Name == PlayerRef.ToString());
             }
 
             return null;
@@ -340,7 +340,7 @@ namespace Wolfje.Plugins.Jist.stdlib
         public bool ChangeGroup(object Player, object Group)
         {
             TShockAPI.TSPlayer p = null;
-            TShockAPI.DB.User u = new TShockAPI.DB.User();
+            TShockAPI.DB.UserAccount u = new TShockAPI.DB.UserAccount();
             string g = "";
 
             if ((p = GetPlayer(Player)) == null)
@@ -364,8 +364,8 @@ namespace Wolfje.Plugins.Jist.stdlib
 
             try
             {
-                u.Name = p.User.Name;
-                TShockAPI.TShock.Users.SetUserGroup(u, g);
+                u.Name = p.Account.Name;
+                TShockAPI.TShock.UserAccounts.SetUserGroup(u, g);
             }
             catch (Exception ex)
             {
@@ -474,7 +474,7 @@ namespace Wolfje.Plugins.Jist.stdlib
                 return new KeyValuePair<int, Terraria.NPC>(-1, null);
             }
 
-            Terraria.Main.npc[index].SetDefaults(npc.type, -1f);
+            Terraria.Main.npc[index].SetDefaults(npc.type);
             //Terraria.Main.npc[index].SetDefaults(npc.name);
             //Terraria.Main.npcLifeBytes[index] = 4;
 
