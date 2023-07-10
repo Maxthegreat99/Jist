@@ -1,25 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EE9A63C2-542D-4D59-8EC3-9D53C894EA54}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+	<TargetFramework>net6.0</TargetFramework>
+	<LangVersion>latest</LangVersion>
+	<OutputType>Library</OutputType>
+	<PlatformTarget>x64</PlatformTarget>
     <RootNamespace>Wolfje.Plugins.Jist</RootNamespace>
     <AssemblyName>Wolfje.Plugins.Jist</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Externalconsole>true</Externalconsole>
     <CustomCommands>
       <CustomCommands>
@@ -28,89 +18,57 @@
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Externalconsole>true</Externalconsole>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="Execute" command="../ServerInstance4.2/TerrariaServer.exe" workingdir="../ServerInstance4.2/" externalConsole="True" />
+        <Command type="BeforeExecute" command="cp bin/Debug/Wolfje.Plugins.Jist.dll ../ServerInstance4.2/" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="HttpServer">
-      <HintPath>References\HttpServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="OTAPI">
-      <HintPath>References\OTAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Collections.Immutable">
-      <HintPath>packages\Microsoft.Bcl.Immutable.1.1.20-beta\lib\portable-net45+win8\System.Collections.Immutable.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="TerrariaServer">
-      <HintPath>References\TerrariaServer.exe</HintPath>
-    </Reference>
-    <Reference Include="TShockAPI">
-      <HintPath>References\TShockAPI.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ConsoleEx.cs" />
-    <Compile Include="Extensions\TShockCommand.Extensions.cs" />
-    <Compile Include="Extensions\TSPlayer.Extensions.cs" />
-    <Compile Include="Extensions\Type.Extensions.cs" />
-    <Compile Include="Framework\JavascriptFunctionAttribute.cs" />
-    <Compile Include="Framework\JavascriptFunctionsNeededEventArgs.cs" />
-    <Compile Include="Framework\JavascriptProvidesAttribute.cs" />
-    <Compile Include="Framework\JavscriptFunction.cs" />
-    <Compile Include="Framework\ScriptContainer.cs" />
-    <Compile Include="Framework\JistScript.cs" />
-    <Compile Include="JistEngine.cs" />
-    <Compile Include="JistPlugin.cs" />
-    <Compile Include="Framework\PreprocessorDirectives.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScriptLog.cs" />
-    <Compile Include="Extensions\ObjectArray.Extensions.cs" />
-    <Compile Include="StdLib\std.cs" />
-    <Compile Include="StdLib\stdhook.cs" />
-    <Compile Include="StdLib\stdtask.cs" />
-    <Compile Include="StdLib\tshock.cs" />
-    <Compile Include="StdLib\Framework\IStdLib.cs" />
-    <Compile Include="StdLib\Framework\stdlib_base.cs" />
-    <Compile Include="JistRestInterface.cs" />
-    <Compile Include="References\Jint\Jint\Native\**\*.cs">
-      <Link>Runtime\%(RecursiveDir)%(FileName)</Link>
-    </Compile>
-    <Compile Include="References\Jint\Jint\Parser\**\*.cs">
-      <Link>Runtime\%(RecursiveDir)%(FileName)</Link>
-    </Compile>
-    <Compile Include="References\Jint\Jint\Runtime\**\*.cs">
-      <Link>Runtime\%(RecursiveDir)%(FileName)</Link>
-    </Compile>
-    <Compile Include="References\Jint\Jint\*.cs">
-      <Link>Runtime\%(RecursiveDir)%(FileName)</Link>
-    </Compile>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)\..\ServerInstance4.3\ServerPlugins" />
   </Target>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Remove="References\**" />
+    <EmbeddedResource Remove="References\**" />
+    <None Remove="References\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="C:\Users\mcjac\.nuget\packages\tshock\5.2.0\contentFiles\any\net6.0\HttpServer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Runtime\Argument\" />
+    <Folder Include="Runtime\Array\" />
+    <Folder Include="Runtime\Ast\" />
+    <Folder Include="Runtime\Boolean\" />
+    <Folder Include="Runtime\CallStack\" />
+    <Folder Include="Runtime\Date\" />
+    <Folder Include="Runtime\Debugger\" />
+    <Folder Include="Runtime\Descriptors\Specialized\" />
+    <Folder Include="Runtime\Environments\" />
+    <Folder Include="Runtime\Error\" />
+    <Folder Include="Runtime\Function\" />
+    <Folder Include="Runtime\Global\" />
+    <Folder Include="Runtime\Interop\" />
+    <Folder Include="Runtime\Json\" />
+    <Folder Include="Runtime\Math\" />
+    <Folder Include="Runtime\Number\Dtoa\" />
+    <Folder Include="Runtime\Object\" />
+    <Folder Include="Runtime\References\" />
+    <Folder Include="Runtime\RegExp\" />
+    <Folder Include="Runtime\String\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="TShock" Version="5.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="References\Jint\Jint\Jint.csproj" />
+  </ItemGroup>
 </Project>

@@ -71,7 +71,7 @@ namespace Wolfje.Plugins.Jist.stdlib
         public void ForEachItem(JsValue func)
         {
 
-            for (var i = -48; i < Main.maxItemTypes; i++)
+            for (var i = -48; i < Terraria.ID.ItemID.Count; i++)
             {
                 var item = TShock.Utils.GetItemById(i);
 

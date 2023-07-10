@@ -466,7 +466,7 @@ namespace Wolfje.Plugins.Jist.stdlib
         [JavascriptFunction("tshock_create_npc")]
         public KeyValuePair<int, Terraria.NPC> CreateNPC(int x, int y, int type)
         {
-            int index = Terraria.NPC.NewNPC(x, y, type);
+            int index = Terraria.NPC.NewNPC(null ,x, y, type);
             Terraria.NPC npc;
 
             if ((npc = Terraria.Main.npc.ElementAtOrDefault(index)) == null)
